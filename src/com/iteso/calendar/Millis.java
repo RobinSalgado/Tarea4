@@ -20,7 +20,7 @@ public class Millis extends DateTime{
 	public  String formattedDtm = null;
 
 	final int MIN_MILLISECONDS = 0;
-	final int MAX_MILLISECONDS = 999;
+	final int MAX_MILLISECONDS = 1000;
 	// the number of milliseconds since the epoch of 1970-01-01T00:00:00Z;
 	final static long CURRENT_TIMESTAMP = Instant.now().toEpochMilli(); 
 	private static long timestamp; // Inicializamos la estampaDeTiempo en la actual.
@@ -158,13 +158,17 @@ public class Millis extends DateTime{
 	public void next() {
 		setMilliseconds( getMilliseconds() + 1); 
 
-
 		if( getMilliseconds() > 999 ) {
 			if(getSeconds() == 59 && getMinutes() == 59 && getHours() == 23){
 				setMilliseconds(0);
 				setSeconds(0);
 				setMinutes(0);
-				setHours(0);	
+				setHours(0);
+				if ( getDay() == 31 && getMonth() == 12) {
+					setDay(1);
+					setMonth(1);
+					this.setYear(this.getYear() + 1);
+				}
 			} else if(getSeconds() == 59 && getMinutes() == 59 && getHours() < 23) {
 				setMilliseconds(0);
 				setSeconds(0);
@@ -178,7 +182,7 @@ public class Millis extends DateTime{
 				setMilliseconds(0);
 				setSeconds(getSeconds() + 1);
 			}
-		}
+		}// fin del 999
 	} // fin de método next
 
 	@Override

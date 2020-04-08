@@ -30,6 +30,8 @@ public class TestMillis {
 		 m4.add(Millis.MILLISECOND, 214);    					// [23:59:59.999] 31/12/18 
 		 m4.next();        										// [00:00:00.000] 01/01/19
 		 System.out.println(m4);
+//		 m5.setYear(m5.getYear() + 15);
+//		 System.out.println(m5.getYear());
 		
 	}
 }

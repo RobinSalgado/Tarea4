@@ -81,10 +81,12 @@ public class Date {
 
 	}
 	public int getYear() {
-		return year;
+		return this.year;
 	}
 	public void setYear(int year) {
-		if( year >= MIN_YEAR && year <= MAX_YEAR ) this.year = year;
+		if( year >= MIN_YEAR && year <= MAX_YEAR ) {
+			this.year = year;
+		}
 	}
 	public int getFormat() {
 		return format;
