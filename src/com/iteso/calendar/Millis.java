@@ -25,17 +25,17 @@ public class Millis extends DateTime{
 	
 	/*COMIENZA DECLARACIÓN DE CONSTRUCTORES*/
 	public Millis ( ) { 
-		// se invoca a super para inicializar todo a la fecha y hora actual.
-		super();
-		setFormat(1);
-		// se muestran los milisegundos siempre en números de 3 dígitos
-		setMilliseconds( (int) (System.currentTimeMillis() % 1000 ) ); 
-		setTimestamp(currentTimeStamp);
+//		// se invoca a super para inicializar todo a la fecha y hora actual.
+//		super();
+//		setFormat(4);
+//		// se muestran los milisegundos siempre en números de 3 dígitos
+//		setMilliseconds( (int) (System.currentTimeMillis() % 1000 ) ); 
+//		setTimestamp(currentTimeStamp);
 		
 	}
 
 	public Millis ( long insertTimeStamp ) {
-		setFormat(1);
+		setFormat(3);
 		final DateTimeFormatter formatter = 
 			    DateTimeFormatter.ofPattern("HH:mm:ss.SSS dd/MM/yy ");
 
@@ -288,12 +288,14 @@ public class Millis extends DateTime{
 
 
 		switch(getFormat()) {
-
+		
+		case 0: return super.toString();
+		
 		case 1: return super.toString() + " " + "(" + s_timestamp +")"; 
 
 		case 2: return super.toString() + " " + "(" + s_timestamp +")";
 
-		case 3: System.out.println(formatDtm(formattedDtm));break; 
+		case 3: System.out.print(formatDtm(formattedDtm));break; 
 
 		case 4 :  return "[" 
 		+ s_hours + ":"
