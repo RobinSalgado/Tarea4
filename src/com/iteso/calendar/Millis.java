@@ -12,11 +12,11 @@ import java.time.format.DateTimeFormatter;
 
 public class Millis extends DateTime{
 
-	private static final String DAY = "day";
-	private static final String HOUR = "hour";
-	private static final String MINUTE = "minute";
-	private static final String SECOND = "second";
-	private static final String MILLISECOND = "millisecond";
+	public static final String DAY = "day";
+	public static final String HOUR = "hour";
+	public static final String MINUTE = "minute";
+	public static final String SECOND = "second";
+	public static final String MILLISECOND = "millisecond";
 	public  String formattedDtm = null;
 
 	final int MIN_MILLISECONDS = 0;
