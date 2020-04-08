@@ -206,7 +206,8 @@ public class Millis extends DateTime{
 
 		case 2: return super.toString() + " " + "(" + s_timestamp +")"; 
 
-		case 3: System.out.println("[ "+formattedDtm+"]");break; 
+		case 3: 
+			System.out.println(formatDtm(formattedDtm));break; 
 		
 		default :return "[" 
 		+ s_hours + ":"
@@ -219,5 +220,12 @@ public class Millis extends DateTime{
 		} // fin del switch
 		return "";	
 	} // fin del método toString
+	
+	private String formatDtm (String formattedDtm) {
+		String[] format = formattedDtm.split(" "); // 23:10:45, 19/07/2010
+		//23:10:45
+		//19/07/2010
+		return "["+format[0]+"] "+ format[1];
+	}
 }
 
