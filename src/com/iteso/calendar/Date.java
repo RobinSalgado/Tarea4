@@ -1,5 +1,6 @@
 package com.iteso.calendar;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 public class Date {
@@ -53,6 +54,7 @@ public class Date {
 		return day;
 	}
 	public void setDay(int day) {
+		
 		this.day = day;
 	}
 	public int getMonth() {
@@ -84,10 +86,10 @@ public class Date {
 		return this.year;
 	}
 	public void setYear(int year) {
-		if( year >= MIN_YEAR && year <= MAX_YEAR ) {
+	
 			this.year = year;
 		}
-	}
+
 	public int getFormat() {
 		return format;
 	}
@@ -131,12 +133,18 @@ public class Date {
 
 
 	public String toString () {
-		if (format == 0) 
-			return  day +"/" + month + "/" + year;
+		String pattern2="0";
+		DecimalFormat myFormatter = new DecimalFormat(pattern2);
+		String s_Days = myFormatter.format(getDay()); 	  // cambiando el patron para que imprima en dos dígitos siempre "00"
+		String s_Month = myFormatter.format(getDay()); 	  // cambiando el patron para que imprima en dos dígitos siempre "00"
+		if (format == 0) {
+	
+			return  s_Days +"/" + s_Month + "/" + year;
+		}
 		else if ( format == 1)
-			return day + "-" + month + "-" + year;
+			return s_Days + "-" + s_Month + "-" + year;
 		else 
-			return day + " de " + monthName + " del " + year;
+			return s_Days + " de " + s_Month + " del " + year;
 	}
 
 	public boolean equals( Object obj) {
