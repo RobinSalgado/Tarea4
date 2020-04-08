@@ -20,7 +20,7 @@ public class Millis extends DateTime{
 	public  String formattedDtm = null;
 
 	final int MIN_MILLISECONDS = 0;
-	final int MAX_MILLISECONDS = 9999;
+	final int MAX_MILLISECONDS = 999;
 	// the number of milliseconds since the epoch of 1970-01-01T00:00:00Z;
 	final static long CURRENT_TIMESTAMP = Instant.now().toEpochMilli(); 
 	private static long timestamp; // Inicializamos la estampaDeTiempo en la actual.
@@ -44,10 +44,6 @@ public class Millis extends DateTime{
 			 formattedDtm = Instant.ofEpochSecond(unixTime)
 			        .atZone(ZoneId.of("GMT-5"))
 			        .format(formatter);
-
-			 
-		
-
 	}
 	
 	public Millis ( int day, int month, int year ) {
@@ -206,7 +202,7 @@ public class Millis extends DateTime{
 
 		case 2: return super.toString() + " " + "(" + s_timestamp +")"; 
 
-		case 3: System.out.println("[ "+formattedDtm+"]");break; 
+		case 3: System.out.println(formattedDtm);break; 
 		
 		default :return "[" 
 		+ s_hours + ":"
