@@ -159,23 +159,24 @@ public class Millis extends DateTime{
 		setMilliseconds( getMilliseconds() + 1); 
 
 
-		if( getMilliseconds() > 999 ){
-			if( getSeconds() == 59 ){
-				if( getMinutes() == 59 ){
-					if( getHours() == 23 ){
-						setMilliseconds(0);
-						setSeconds(0);
-						setMinutes(0);
-						setHours(0);
-					} else {
-						setSeconds(0);
-						setMinutes(0);
-						setHours(getHours()+1);
-					}
-				} else {
-					setSeconds(0);
-					setMinutes(getMinutes()+1);
-				}	
+		if( getMilliseconds() > 999 ) {
+			if(getSeconds() == 59 && getMinutes() == 59 && getHours() == 23){
+				setMilliseconds(0);
+				setSeconds(0);
+				setMinutes(0);
+				setHours(0);	
+			} else if(getSeconds() == 59 && getMinutes() == 59 && getHours() < 23) {
+				setMilliseconds(0);
+				setSeconds(0);
+				setMinutes(0);
+				setHours(getHours() + 1);
+			} else if(getSeconds() == 59 && getMinutes() < 59) {
+				setMilliseconds(0);
+				setSeconds(0);
+				setMinutes(getMinutes() + 1);
+			} else if(getSeconds() < 59) {
+				setMilliseconds(0);
+				setSeconds(getSeconds() + 1);
 			}
 		}
 	} // fin de método next
