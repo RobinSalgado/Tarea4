@@ -106,7 +106,7 @@ public class DateTime extends Date {
 		else return "[" + s_hours + ":" + s_minutes + ":" + s_seconds + " " +"PM]"+ " "+ super.toString() ;
 		}
 	}
-
+ 
 	public boolean equals( Object objDT ) { 
 		if ( ! ( objDT instanceof DateTime) ) return false;
 		else {

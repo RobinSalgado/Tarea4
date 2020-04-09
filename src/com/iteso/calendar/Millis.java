@@ -15,7 +15,9 @@ public class Millis extends DateTime{
 	public static final String SECOND = "second";
 	public static final String MILLISECOND = "millisecond";
 	public  String formattedDtm = null;
-
+	
+	public int flag = 0;
+	
 	final int MIN_MILLISECONDS = 0;
 	final int MAX_MILLISECONDS = 1000;
 	// the number of milliseconds since the epoch of 1970-01-01T00:00:00Z;
@@ -25,12 +27,12 @@ public class Millis extends DateTime{
 	
 	/*COMIENZA DECLARACIÓN DE CONSTRUCTORES*/
 	public Millis ( ) { 
-//		// se invoca a super para inicializar todo a la fecha y hora actual.
-//		super();
-//		setFormat(4);
-//		// se muestran los milisegundos siempre en números de 3 dígitos
-//		setMilliseconds( (int) (System.currentTimeMillis() % 1000 ) ); 
-//		setTimestamp(currentTimeStamp);
+		// se invoca a super para inicializar todo a la fecha y hora actual.
+		super();
+		setFormat(4);
+		// se muestran los milisegundos siempre en números de 3 dígitos
+		setMilliseconds( (int) (System.currentTimeMillis() % 1000 ) ); 
+		setTimestamp(currentTimeStamp);
 		
 	}
 
@@ -42,9 +44,8 @@ public class Millis extends DateTime{
 			final long unixTime = insertTimeStamp;
 			 formattedDtm = Instant.ofEpochSecond(unixTime)
 			        .atZone(ZoneId.of("GMT-5"))
-			        .format(formatter);
-	
-			 
+			        .format(formatter);	
+			
 
 	}
 	
@@ -106,7 +107,7 @@ public class Millis extends DateTime{
 			 formattedDtm = Instant.ofEpochSecond(unixTime)
 			        .atZone(ZoneId.of("GMT-6"))
 			        .format(formatter);
-	
+			 	
 	}
 
 	public long getTimestamp() { 
@@ -133,7 +134,12 @@ public class Millis extends DateTime{
 		//23:10:45
 		//19/07/2010
 		return "["+format[0]+"] "+ format[1];
-	}
+	
+		
+		}
+	
+
+				
 	public static long timestampOf(Date d) {
 		/* Gets dd/hh/yyyy hh:mm:ss.SSS en timeStampformat	*/	
 		final String strDate = (  d.getMonth()       + "/" 
@@ -272,10 +278,9 @@ public class Millis extends DateTime{
 	public String toString() {
 
 		String s_timestamp = String.valueOf(currentTimeStamp); // devolverá el timestamp en formato String
-
 		String pattern="000";
 		DecimalFormat myFormatter = new DecimalFormat(pattern);
-		String s_milliseconds = myFormatter.format(getMilliseconds());
+		String s_milliseconds = myFormatter.format(getMilliseconds());// cambiando el patron para que imprima en dos dígitos siempre "000"
 
 		String pattern2="00";
 		DecimalFormat myFormatter2 = new DecimalFormat(pattern2);
@@ -285,8 +290,6 @@ public class Millis extends DateTime{
 		String s_day = myFormatter2.format(getDay()); 	  // cambiando el patron para que imprima en dos dígitos siempre "00"
 		String s_month = myFormatter2.format(getMonth()); // cambiando el patron para que imprima en dos dígitos siempre "00"
 		
-
-
 		switch(getFormat()) {
 		
 		case 0: return super.toString();
@@ -295,7 +298,15 @@ public class Millis extends DateTime{
 
 		case 2: return super.toString() + " " + "(" + s_timestamp +")";
 
-		case 3: System.out.print(formatDtm(formattedDtm));break; 
+		case 3: if(flag == 0) {System.out.print(formatDtm(formattedDtm)); flag = 1;}
+		else if (flag == 1) {return "[" 
+				+ s_hours + ":"
+				+ s_minutes + ":" 
+				+ s_seconds + "."
+				+ s_milliseconds + "]" + " "
+				+ s_day +"/"
+				+ s_month + "/"
+				+ getYear();}break;
 
 		case 4 :  return "[" 
 		+ s_hours + ":"
@@ -305,8 +316,6 @@ public class Millis extends DateTime{
 		+ s_day +"/"
 		+ s_month + "/"
 		+ getYear();
-		
-		case 5 : return formattedDtm;
 		} // fin del switch
 		
 		
