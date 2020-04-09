@@ -29,10 +29,11 @@ public class Millis extends DateTime{
 	public Millis ( ) { 
 		// se invoca a super para inicializar todo a la fecha y hora actual.
 		super();
-		setFormat(4);
 		// se muestran los milisegundos siempre en números de 3 dígitos
 		setMilliseconds( (int) (System.currentTimeMillis() % 1000 ) ); 
+
 		setTimestamp(currentTimeStamp);
+		setFormat(0);
 		
 	}
 
@@ -298,15 +299,16 @@ public class Millis extends DateTime{
 
 		case 2: return super.toString() + " " + "(" + s_timestamp +")";
 
-		case 3: if(flag == 0) {System.out.print(formatDtm(formattedDtm)); flag = 1;}
-		else if (flag == 1) {return "[" 
-				+ s_hours + ":"
-				+ s_minutes + ":" 
-				+ s_seconds + "."
-				+ s_milliseconds + "]" + " "
-				+ s_day +"/"
-				+ s_month + "/"
-				+ getYear();}break;
+		case 3: if(flag == 0) {System.out.print(formatDtm(formattedDtm)); /*flag = 1*/;}break;
+		
+//		else if (flag == 1) {return "[" 
+//				+ s_hours + ":"
+//				+ s_minutes + ":" 
+//				+ s_seconds + "."
+//				+ s_milliseconds + "]" + " "
+//				+ s_day +"/"
+//				+ s_month + "/"
+//				+ getYear();}break;
 
 		case 4 :  return "[" 
 		+ s_hours + ":"

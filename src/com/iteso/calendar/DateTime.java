@@ -104,6 +104,7 @@ public class DateTime extends Date {
 		default :  if ( getHours() < 12) 
 			 return "[" + s_hours + ":" + s_minutes + ":" + s_seconds + " " +"AM]"+ " "+ super.toString() ;
 		else return "[" + s_hours + ":" + s_minutes + ":" + s_seconds + " " +"PM]"+ " "+ super.toString() ;
+		case 2: return "[" + s_hours + ":" + s_minutes + ":" + s_seconds + "]" + " " + super.toString();
 		}
 	}
  

@@ -61,25 +61,26 @@ public class Date {
 		return month;
 	}
 
-	public void setMonth(int month) {
+	public String setMonth(int month) {
 		if (month >= 1 && month <= 12) {
 			this.month = month;
 		}
 		switch ( month ) {
-		case  1: this.monthName = "Enero"; 		break;
-		case  2: this.monthName = "Febrero";	break;
-		case  3: this.monthName = "Marzo";		break;
-		case  4: this.monthName = "Abril";		break;
-		case  5: this.monthName = "Mayo";		break;
-		case  6: this.monthName = "Junio";		break;
-		case  7: this.monthName = "Julio";		break;
-		case  8: this.monthName = "Agosto";		break;
-		case  9: this.monthName = "Septiembre";	break;
-		case 10: this.monthName = "Octubre";	break;
-		case 11: this.monthName = "Noviembre";	break;
-		case 12: this.monthName = "Diciembre";	break;
+		case  1:  this.monthName = "Enero"; break; 	
+		case  2:  this.monthName = "Febrero";break; 		
+		case  3:  this.monthName = "Marzo";	break; 		
+		case  4:  this.monthName = "Abril";	break; 		
+		case  5:  this.monthName = "Mayo";	break; 		
+		case  6:  this.monthName = "Junio";	break; 		
+		case  7:  this.monthName = "Julio";	break; 		
+		case  8:  this.monthName = "Agosto";break; 			
+		case  9:  this.monthName = "Septiembre";break; 		
+		case 10:  this.monthName = "Octubre";	break; 	
+		case 11:  this.monthName = "Noviembre";	break; 	
+		case 12:  this.monthName = "Diciembre";	break; 	
 
 		}
+		return monthName;
 
 	}
 	public int getYear() {
@@ -96,8 +97,8 @@ public class Date {
 	public void setFormat(int format) {
 		this.format = format;
 	}
-	public String getMonthName( String monthName) {
-		return monthName;
+	public String getMonthName( ) {
+		return this.monthName;
 	}
 	/*END OF SETTER & GETTERS*/
 
@@ -136,7 +137,11 @@ public class Date {
 		String pattern2="0";
 		DecimalFormat myFormatter = new DecimalFormat(pattern2);
 		String s_Days = myFormatter.format(getDay()); 	  // cambiando el patron para que imprima en dos dígitos siempre "00"
-		String s_Month = myFormatter.format(getDay()); 	  // cambiando el patron para que imprima en dos dígitos siempre "00"
+		setMonth(getMonth());
+		String s_Month = myFormatter.format(getMonth()); 	  // cambiando el patron para que imprima en dos dígitos siempre "00"
+		
+		
+		
 		if (format == 0) {
 	
 			return  s_Days +"/" + s_Month + "/" + year;
@@ -144,7 +149,7 @@ public class Date {
 		else if ( format == 1)
 			return s_Days + "-" + s_Month + "-" + year;
 		else 
-			return s_Days + " de " + s_Month + " del " + year;
+			return s_Days + " de " + getMonthName() + " del " + year;
 	}
 
 	public boolean equals( Object obj) {
