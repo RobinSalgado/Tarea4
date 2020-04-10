@@ -50,7 +50,6 @@ public class Millis extends DateTime{
 			 
 			 String[] splitformattedDtm = formattedDtm.split(" "); //09:45:12.000 1/01/2
 			 String[] time = splitformattedDtm[0].split(":");
-			 System.out.println(time[2]);
 			 String[] ms = time[2].split("\\.");
 			 setHours(Integer.valueOf(time[0]));
 			 setMinutes(Integer.valueOf(time[1]));
