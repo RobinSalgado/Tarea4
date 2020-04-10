@@ -52,7 +52,6 @@ public class Millis extends DateTime{
 			 String[] time = splitformattedDtm[0].split(":");
 			 System.out.println(time[2]);
 			 String[] ms = time[2].split("\\.");
-			 System.out.println(ms.length);
 			 setHours(Integer.valueOf(time[0]));
 			 setMinutes(Integer.valueOf(time[1]));
 			 setSeconds(Integer.valueOf(ms[0]));
@@ -225,8 +224,6 @@ public class Millis extends DateTime{
 	}
 
 	public boolean isAfter( Millis m) {
-		System.out.println("Los millis de la fecha anteriorior: " +m.getMilliseconds());
-		System.out.println("Los millis de la fecha despues: " + getMilliseconds());
 		if ( m.getYear()     < this.getYear()) {
 			return true;
 		} if (  m.getMonth() < super.getMonth() ) {
