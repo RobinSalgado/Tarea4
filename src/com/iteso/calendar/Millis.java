@@ -24,7 +24,7 @@ public class Millis extends DateTime{
     long currentTimeStamp = Instant.now().toEpochMilli(); 
 	private static long timestamp; // Inicializamos la estampaDeTiempo en la actual.
 	private int milliseconds;
-	
+	private long unixTime;
 	/*COMIENZA DECLARACIÓN DE CONSTRUCTORES*/
 	public Millis ( ) { 
 		// se invoca a super para inicializar todo a la fecha y hora actual.
@@ -42,7 +42,7 @@ public class Millis extends DateTime{
 		final DateTimeFormatter formatter = 
 			    DateTimeFormatter.ofPattern("HH:mm:ss.SSS dd/MM/yy ");
 
-			final long unixTime = insertTimeStamp;
+			unixTime = insertTimeStamp;
 			 formattedDtm = Instant.ofEpochSecond(unixTime)
 			        .atZone(ZoneId.of("GMT-5"))
 			        .format(formatter);	
@@ -137,9 +137,30 @@ public class Millis extends DateTime{
 		return "["+format[0]+"] "+ format[1];
 		}
 	
-	public void setFormatDtm( long segundos) {
-		this.formattedDtm = this.formattedDtm + ( segundos / 1000);
+	public void setFormatDtm(int milisegundos) {
+		/**
+		 * las primeras 2 lineas crean los 90 segundos en formato 000 (090)
+		 **/
+		DecimalFormat myFormatter = new DecimalFormat("000");
+		String s_milliseconds = myFormatter.format(milisegundos);// cambiando el patron para que imprima en dos dígitos siempre "000"
+		/**
+		 * con este algoritmo, modificamos los ms de formattedDtm.
+		 */
+		String aux = ""; // se crea un aux para guardar el cambio de los segundos
 		
+		// se recorre el formattedDtm y se consigue c/u de sus caracteres.
+		for(int i = 0; i < this.formattedDtm.length(); i++) {
+			char c = this.formattedDtm.charAt(i); // consigue c/u de los caracteres
+			aux = aux+c;
+			if(c == '.') { // la cualidad es que los ms van despues del .
+				// guardo en el string aux los 90 ms de s_milliseconds
+				for(int j = 0; j < s_milliseconds.length(); j++) {
+					aux = aux + s_milliseconds.charAt(j);//18:00:00.090
+				}
+				i = i+3;
+			}
+		}
+		this.formattedDtm = aux;
 	}
 
 				
@@ -158,7 +179,18 @@ public class Millis extends DateTime{
 		}
 		return timestamp;
 	}
-
+	
+	public static long timestampOf(String d) {
+		String[] date = d.split(" ");
+		try {
+			Long toTimeStamp = new SimpleDateFormat("MM/dd/yy").parse(date[1].trim()).getTime();
+			timestamp = toTimeStamp;
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return timestamp;
+	}
 	public static long timestampOf (DateTime dt) {
 
 		/* Gets dd/hh/yyyy hh:mm:ss.SSS en timeStampformat	*/	
