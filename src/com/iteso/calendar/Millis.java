@@ -47,7 +47,22 @@ public class Millis extends DateTime{
 			        .atZone(ZoneId.of("GMT-5"))
 			        .format(formatter);	
 			 setFormat(3);
-
+			 
+			 String[] splitformattedDtm = formattedDtm.split(" "); //09:45:12.000 1/01/2
+			 String[] time = splitformattedDtm[0].split(":");
+			 System.out.println(time[2]);
+			 String[] ms = time[2].split("\\.");
+			 System.out.println(ms.length);
+			 setHours(Integer.valueOf(time[0]));
+			 setMinutes(Integer.valueOf(time[1]));
+			 setSeconds(Integer.valueOf(ms[0]));
+			 setMilliseconds(Integer.valueOf(ms[1]));
+			 
+			 String[] date = splitformattedDtm[1].split("/");
+			 
+			 setDay(Integer.valueOf(date[0]));
+			 setMonth(Integer.valueOf(date[1]));
+			 setYear(Integer.valueOf(date[2]));
 	}
 	
 	public Millis ( int day, int month, int year ) {
@@ -210,34 +225,21 @@ public class Millis extends DateTime{
 	}
 
 	public boolean isAfter( Millis m) {
-
-		if ( m.getYear()     < super.getYear()) {
-			System.out.println("El año de la fecha anteriorior: " + m.getYear());
-			System.out.println("El año de la fecha despues: " + getYear());
+		System.out.println("Los millis de la fecha anteriorior: " +m.getMilliseconds());
+		System.out.println("Los millis de la fecha despues: " + getMilliseconds());
+		if ( m.getYear()     < this.getYear()) {
 			return true;
 		} if (  m.getMonth() < super.getMonth() ) {
-			System.out.println("Los meses de la fecha anterior: " + m.getMonth());
-			System.out.println("Los meses de la fecha despues: " + getYear());
 			return true;}
 		 if (  m.getDay()    < super.getDay() ) {
-			 System.out.println("El día de la fecha anteriori: " +m.getDay());
-			 System.out.println("El día de la fecha despues: " + getYear());
 			return true;}
 		 if ( m.getHours()   < super.getHours()) {
-			 System.out.println("La hora de la fecha anteriori: " +m.getHours());
-			 System.out.println("La hora de la fecha despues: " +getYear());
 			return true;}
 		 if ( m.getMinutes() < super.getMinutes()) {
-			 System.out.println("Los minutos de la fecha anteriorior: " +m.getMinutes());
-			 System.out.println("Los minutos de la fecha despues: " + getYear());
 			return true;}
 		 if ( m.getSeconds() < super.getSeconds()) {
-			 System.err.println("Los segundos de la fecha anterioria: " +m.getSeconds());
-			 System.err.println("Los segundos de la fecha despues: " + getYear());
 			return true;}
 		 if ( m.getMilliseconds() < this.milliseconds) {
-			 System.err.println("Los millis de la fecha anteriorior: " +this.milliseconds);
-			 System.err.println("Los millis de la fecha despues: " + m.milliseconds);
 			return true;}
 		return false;
 	}

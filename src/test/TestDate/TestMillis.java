@@ -22,7 +22,7 @@ public class TestMillis {
 	
 //		Millis m2 = new Millis(15, 12, 2018);    		 			// [00:00:00.000] 15/12/18  
 //		Millis m3 = new Millis(21, 45, 52, 15, 12, 2018);			// [21:45:52.000] 15/12/18
-//		Millis m4 = new Millis(21, 45, 52, 785, 15, 12, 2018);  	// [21:45:52.785] 15/12/18 
+		Millis m4 = new Millis(21, 45, 52, 785, 15, 12, 2018);  	// [21:45:52.785] 15/12/18 
 //		int    ms = m4.getMilliseconds();      						// ms = 785 
 //		long   ts = m4.getTimestamp();      						// ts = 1544931952785 
 //		System.out.println(m2);
@@ -33,11 +33,11 @@ public class TestMillis {
 				
 		
 		  Millis m5 = new Millis(1_307_169_163);    // [01:32:43.000] 04/06/11
-		  System.out.println(m5);	
-		  m5.setTimestamp(0);      					// [18:00:00.000] 31/12/69 
-		  System.out.println(m5);
-		  m5.setFormatDtm(90); 
-		  System.out.println(m5);					// [18:00:00.090] 31/12/69 
+//		  System.out.println(m5);	
+//		  m5.setTimestamp(0);      					// [18:00:00.000] 31/12/69 
+//		  System.out.println(m5);
+//		  m5.setFormatDtm(90); 
+//		  System.out.println(m5);					// [18:00:00.090] 31/12/69 
 		
 
 //		 	 
@@ -57,7 +57,7 @@ public class TestMillis {
 //		 System.out.println(m2.isBefore(m3));    // Imprime true  
 //		 System.out.println(m3.isBefore(m2));    // Imprime false  
 //		 System.out.println(m4.isAfter(m5));    // Imprime true  
-//		 System.out.println(m5.isAfter(m4));    // Imprime false
+		 System.out.println(m5.isAfter(m4));    // Imprime false
 		  
 //		  System.out.println(m5);
 //		 
