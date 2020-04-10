@@ -38,7 +38,7 @@ public class Millis extends DateTime{
 	}
 
 	public Millis ( long insertTimeStamp ) {
-		setFormat(3);
+		
 		final DateTimeFormatter formatter = 
 			    DateTimeFormatter.ofPattern("HH:mm:ss.SSS dd/MM/yy ");
 
@@ -46,7 +46,7 @@ public class Millis extends DateTime{
 			 formattedDtm = Instant.ofEpochSecond(unixTime)
 			        .atZone(ZoneId.of("GMT-5"))
 			        .format(formatter);	
-			
+			 setFormat(3);
 
 	}
 	
@@ -135,10 +135,12 @@ public class Millis extends DateTime{
 		//23:10:45
 		//19/07/2010
 		return "["+format[0]+"] "+ format[1];
-	
-		
 		}
 	
+	public void setFormatDtm( long segundos) {
+		this.formattedDtm = this.formattedDtm + ( segundos / 1000);
+		
+	}
 
 				
 	public static long timestampOf(Date d) {
@@ -299,16 +301,7 @@ public class Millis extends DateTime{
 
 		case 2: return super.toString() + " " + "(" + s_timestamp +")";
 
-		case 3: if(flag == 0) {System.out.print(formatDtm(formattedDtm)); /*flag = 1*/;}break;
-		
-//		else if (flag == 1) {return "[" 
-//				+ s_hours + ":"
-//				+ s_minutes + ":" 
-//				+ s_seconds + "."
-//				+ s_milliseconds + "]" + " "
-//				+ s_day +"/"
-//				+ s_month + "/"
-//				+ getYear();}break;
+		case 3: if(flag == 0) {System.out.print(formatDtm(formattedDtm)); /*flag = 1*/}break;
 
 		case 4 :  return "[" 
 		+ s_hours + ":"

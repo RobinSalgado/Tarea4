@@ -2,6 +2,8 @@ package test.TestDate;
 
 
 
+import java.io.ObjectInputStream.GetField;
+
 import com.iteso.calendar.Date;
 import com.iteso.calendar.DateTime;
 import com.iteso.calendar.Millis;
@@ -34,8 +36,9 @@ public class TestMillis {
 		  System.out.println(m5);	
 		  m5.setTimestamp(0);      					// [18:00:00.000] 31/12/69 
 		  System.out.println(m5);
-		  m5.setMilliseconds(90);
+		  m5.setFormatDtm(90); 
 		  System.out.println(m5);					// [18:00:00.090] 31/12/69 
+		
 
 //		 	 
 //		 m4.add(Millis.DAY,        16);   						// [21:45:52.785] 31/12/18
